@@ -26,24 +26,24 @@ else{
 let ip_server = "192.168.31.253:" + port.toString();
 let content = 
 "server {\n" +
-    "\tlisten 80;\n" +
-    "\tserver_name "+domain+" www."+domain+ ";\n" +
-    '\tlocation / {\n' +
-        '\t\tproxy_pass '+ip_server+';\n' +
-        '\t\tproxy_http_version 1.1;\n' +
-        '\t\tproxy_set_header Upgrade $http_upgrade;\n' +
-        "\t\tproxy_set_header Connection 'upgrade';\n" + 
-        '\t\tproxy_set_header Host $http_host;\n' +
+    "    listen 80;\n" +
+    "    server_name "+domain+" www."+domain+ ";\n" +
+    '    location / {\n' +
+        '        proxy_pass '+ip_server+';\n' +
+        '        proxy_http_version 1.1;\n' +
+        '        proxy_set_header Upgrade $http_upgrade;\n' +
+        "        proxy_set_header Connection 'upgrade';\n" + 
+        '        proxy_set_header Host $http_host;\n' +
         
-        '\t\tproxy_set_header X-Real-IP $remote_addr;\n' +
-        '\t\tproxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n'+
+        '        proxy_set_header X-Real-IP $remote_addr;\n' +
+        '        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n'+
 
-        '\t\tproxy_set_header HTTP_Country-Code $geoip_country_code;\n' +
-        '\t\tproxy_cache_bypass $http_upgrade;\n' +
-        '\t\tproxy_pass_request_headers on;\n' +
-    '\tlocation ~ /\.ht {\n' +
-        '\t\tdeny all;\n' +
-    '\t}\n' +
+        '        proxy_set_header HTTP_Country-Code $geoip_country_code;\n' +
+        '        proxy_cache_bypass $http_upgrade;\n' +
+        '        proxy_pass_request_headers on;\n' +
+    '    location ~ /\.ht {\n' +
+        '        deny all;\n' +
+    '    }\n' +
 "}\n"
 let namefile = domain + '.conf';
 
@@ -67,6 +67,8 @@ getAsync(comand).then(data => {
         if (err) throw err;
         console.log('Save port done!');
     });
+
+    cmd.run('sudo service nginx restart');
 }).catch(err => {
   console.log('cmd err', err)
 })
