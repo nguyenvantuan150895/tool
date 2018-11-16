@@ -25,26 +25,29 @@ else{
 // create file config Nginx
 let ip_server = "192.168.31.253:" + port.toString();
 let content = 
-"server {" +
-    "listen 80;" +
-    "server_name "+domain+" www."+domain+ ";" +
-    'location / {' +
-        'proxy_pass '+ip_server+';' +
-        'proxy_http_version 1.1;' +
-        'proxy_set_header Upgrade $http_upgrade;' +
-        "proxy_set_header Connection 'upgrade';" + 
-        'proxy_set_header Host $http_host;' +
+"server {\n" +
+    "    listen 80;\n" +
+    "    server_name "+domain+" www."+domain+";\n" +
+    '    location / {' +
+        '        proxy_pass http://'+ip_server+';\n' +
+        '        proxy_http_version 1.1;\n' +
+        '        proxy_set_header Upgrade $http_upgrade;\n' +
+        "        proxy_set_header Connection 'upgrade';\n" + 
+        '        proxy_set_header Host $http_host;\n' +
         
-        'proxy_set_header X-Real-IP $remote_addr;' +
-        'proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;'+
+        '        proxy_set_header X-Real-IP $remote_addr;\n' +
+        '        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n'+
 
-        'proxy_set_header HTTP_Country-Code $geoip_country_code;' +
-        'proxy_cache_bypass $http_upgrade;' +
-        'proxy_pass_request_headers on;' +
-    'location ~ /\.ht {' +
-        'deny all;' +
-    '}' +
-"}"
+        '        proxy_set_header HTTP_Country-Code $geoip_country_code;\n' +
+        '        proxy_cache_bypass $http_upgrade;\n' +
+        '        proxy_pass_request_headers on;\n' +
+    '    location ~ /\.ht {\n' +
+        '        deny all;\n' +
+    '    }\n' +
+"}\n"
+
+
+
 let namefile = domain + '.conf';
 
 let path = '/etc/nginx/conf.d/' + namefile;
