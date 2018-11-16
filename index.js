@@ -26,24 +26,24 @@ else{
 let ip_server = "192.168.31.253:" + port.toString();
 let content = 
 "server {" +
-    "    listen 80;" +
-    "    server_name "+domain+" www."+domain+ ";" +
-    '    location / {' +
-        '        proxy_pass '+ip_server+';' +
-        '        proxy_http_version 1.1;' +
-        '        proxy_set_header Upgrade $http_upgrade;' +
-        "        proxy_set_header Connection 'upgrade';" + 
-        '        proxy_set_header Host $http_host;' +
+    "listen 80;" +
+    "server_name "+domain+" www."+domain+ ";" +
+    'location / {' +
+        'proxy_pass '+ip_server+';' +
+        'proxy_http_version 1.1;' +
+        'proxy_set_header Upgrade $http_upgrade;' +
+        "proxy_set_header Connection 'upgrade';" + 
+        'proxy_set_header Host $http_host;' +
         
-        '        proxy_set_header X-Real-IP $remote_addr;' +
-        '        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;'+
+        'proxy_set_header X-Real-IP $remote_addr;' +
+        'proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;'+
 
-        '        proxy_set_header HTTP_Country-Code $geoip_country_code;' +
-        '        proxy_cache_bypass $http_upgrade;' +
-        '        proxy_pass_request_headers on;' +
-    '    location ~ /\.ht {' +
-        '        deny all;' +
-    '    }' +
+        'proxy_set_header HTTP_Country-Code $geoip_country_code;' +
+        'proxy_cache_bypass $http_upgrade;' +
+        'proxy_pass_request_headers on;' +
+    'location ~ /\.ht {' +
+        'deny all;' +
+    '}' +
 "}"
 let namefile = domain + '.conf';
 
