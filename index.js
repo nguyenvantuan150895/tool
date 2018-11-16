@@ -28,7 +28,7 @@ let content =
 "server {\n" +
     "    listen 80;\n" +
     "    server_name "+domain+" www."+domain+";\n" +
-    '    location / {' +
+    '    location / {\n' +
         '        proxy_pass http://'+ip_server+';\n' +
         '        proxy_http_version 1.1;\n' +
         '        proxy_set_header Upgrade $http_upgrade;\n' +
@@ -41,6 +41,7 @@ let content =
         '        proxy_set_header HTTP_Country-Code $geoip_country_code;\n' +
         '        proxy_cache_bypass $http_upgrade;\n' +
         '        proxy_pass_request_headers on;\n' +
+    '    }'
     '    location ~ /\.ht {\n' +
         '        deny all;\n' +
     '    }\n' +
