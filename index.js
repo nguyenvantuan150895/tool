@@ -47,7 +47,7 @@ let content =
 "}\n"
 let namefile = domain + '.conf';
 
-let path = '/etc/nginx/conf.d' + namefile;
+let path = '/etc/nginx/conf.d/' + namefile;
 fs.writeFile(path, content, function (err) {
     if (err) throw err;
     console.log('Save file config nginx done!');
