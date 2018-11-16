@@ -41,7 +41,7 @@ let content =
         '        proxy_set_header HTTP_Country-Code $geoip_country_code;\n' +
         '        proxy_cache_bypass $http_upgrade;\n' +
         '        proxy_pass_request_headers on;\n' +
-    '    }'+
+    '    }\n'+
     '    location ~ /\.ht {\n' +
         '        deny all;\n' +
     '    }\n' +
