@@ -66,14 +66,17 @@ getAsync(comand).then(data => {
 	cmd.run('mv /home/tuan/web/'+domain+'/server.js'+' '+'/home/tuan/web/'+domain+'/'+name_sv);
     let path_domain = '/home/tuan/web/'+domain+'/domain.txt';
     let path_port = '/home/tuan/web/'+domain+'/port.txt';
-    fs.writeFileSync(path_domain, domain, function (err) {
-        if (err) throw err;
-        console.log('Save domain done!');
-    });
-    fs.writeFileSync(path_port, port, function (err) {
-        if (err) throw err;
-        console.log('Save port done!');
-    });
+
+    fs.writeFileSync(path_domain, domain, 'utf8');
+    // fs.writeFileSync(path_domain, domain, function (err) {
+    //     if (err) throw err;
+    //     console.log('Save domain done!');
+    // });
+    fs.writeFileSync(path_port, port, 'utf8');
+    // fs.writeFileSync(path_port, port, function (err) {
+    //     if (err) throw err;
+    //     console.log('Save port done!');
+    // });
     cmd.run('sudo service nginx restart');
     let test = 'sudo pm2 start /home/tuan/web/'+domain+'/'+name_sv;
     cmd.run(test);
