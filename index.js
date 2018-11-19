@@ -61,6 +61,8 @@ fs.writeFile(path, content, function (err) {
 let comand = 'cp -R /home/tuan/web/DoAn/'+' '+'/home/tuan/web/'+domain;
 const getAsync = promise.promisify(cmd.get, { multiArgs: true, context: cmd })
 getAsync(comand).then(data => {
+	//rename file server.js => 'domain.js'
+	cmd.run('mv /home/tuan/web/'+domain+'/server.js'+' '+'/home/tuan/web/'+domain+'/'+domain+'.js');
     let path_domain = '/home/tuan/web/'+domain+'/domain.txt';
     let path_port = '/home/tuan/web/'+domain+'/port.txt';
     fs.writeFile(path_domain, domain, function (err) {
@@ -72,7 +74,7 @@ getAsync(comand).then(data => {
         console.log('Save port done!');
     });
     cmd.run('sudo service nginx restart');
-    cmd.run('pm2 start /home/tuan/web/'+domain+'/server.js');
+    cmd.run('pm2 start /home/tuan/web/'+domain+'/'+domain+'.js');
 }).catch(err => {
   console.log('cmd err', err)
 })
