@@ -56,13 +56,12 @@ fs.writeFile(path, content, function (err) {
     if (err) throw err;
     console.log('Save file config nginx done!');
 });
-
+console.log('Please wait for minutes!');
 // Create a folder code for each domain
 let comand = 'cp -R /home/tuan/web/DoAn/'+' '+'/home/tuan/web/'+domain;
 const getAsync = promise.promisify(cmd.get, { multiArgs: true, context: cmd })
 getAsync(comand).then(data => {
 	//rename file server.js => 'domain.js'
-	console.log('Please wait for minutes!');
 	let name_sv = domain.split(".")[0]; name_sv = name_sv +'.js';
 	cmd.run('mv /home/tuan/web/'+domain+'/server.js'+' '+'/home/tuan/web/'+domain+'/'+name_sv);
     let path_domain = '/home/tuan/web/'+domain+'/domain.txt';
