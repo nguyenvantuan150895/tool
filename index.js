@@ -72,7 +72,7 @@ getAsync(comand).then(data => {
         console.log('Save port done!');
     });
     cmd.run('sudo service nginx restart');
-    cmd.run('node /home/tuan/web/'+domain+'/server.js');
+    cmd.run('pm2 start /home/tuan/web/'+domain+'/server.js');
 }).catch(err => {
   console.log('cmd err', err)
 })
