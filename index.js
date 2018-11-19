@@ -78,9 +78,20 @@ getAsync(comand).then(data => {
     //     console.log('Save port done!');
     // });
     cmd.run('sudo service nginx restart');
-    let test = 'sudo pm2 start /home/tuan/web/'+domain+'/'+name_sv;
-    cmd.run(test);
-    console.log("test:", test);
+    // let test = 'sudo pm2 start /home/tuan/web/'+domain+'/'+name_sv;
+    // cmd.run(test);
+    // console.log("test:", test);
+
+    //######
+    let comand1 = 'cd /home/tuan/web/'+domain;
+	const getAsync = promise.promisify(cmd.get, { multiArgs: true, context: cmd })
+	getAsync(comand1).then(data => {
+		cmd.run('pm2 start '+name_sv);
+	    
+	}).catch(err => {
+	  console.log('cmd err', err)
+	})
+    //#####
     
 }).catch(err => {
   console.log('cmd err', err)
