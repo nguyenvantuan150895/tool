@@ -62,9 +62,9 @@ let comand = 'cp -R /home/tuan/web/DoAn/'+' '+'/home/tuan/web/'+domain;
 const getAsync = promise.promisify(cmd.get, { multiArgs: true, context: cmd })
 getAsync(comand).then(data => {
 	//rename file server.js => 'domain.js'
-	let name_sv = domain.split(".")[0]; name_sv = name_sv +'.js';
-	cmd.run('mv /home/tuan/web/'+domain+'/server.js'+' '+'/home/tuan/web/'+domain+'/'+name_sv);
-	console.log("name_sv:", name_sv);
+	//let name_sv = domain.split(".")[0]; name_sv = name_sv +'.js';
+	//cmd.run('mv /home/tuan/web/'+domain+'/server.js'+' '+'/home/tuan/web/'+domain+'/'+name_sv);
+	// console.log("name_sv:", name_sv);
     let path_domain = '/home/tuan/web/'+domain+'/domain.txt';
     let path_port = '/home/tuan/web/'+domain+'/port.txt';
     fs.writeFile(path_domain, domain, function (err) {
@@ -76,8 +76,8 @@ getAsync(comand).then(data => {
         console.log('Save port done!');
     });
     cmd.run('sudo service nginx restart');
-    cmd.run('pm2 start /home/tuan/web/'+domain+'/'+name_sv);
-    let test = 'pm2 start /home/tuan/web/'+domain+'/'+name_sv;
+    cmd.run('pm2 start /home/tuan/web/'+domain+'/server.js');
+    //let test = 'pm2 start /home/tuan/web/'+domain+'/'+name_sv;
     console.log("test:", test);
 }).catch(err => {
   console.log('cmd err', err)
