@@ -79,6 +79,7 @@ getAsync(comand).then(data => {
     console.log("comand1:", comand1);
 	const getAsync1 = promise.promisify(cmd.get, { multiArgs: true, context: cmd })
 	getAsync1(comand1).then(data => {
+		console.log("Data:", data);
 		let pm2_command = 'sudo pm2 start '+name_sv;
 		console.log("pm2_command:", pm2_command);
 		cmd.run(pm2_command);
