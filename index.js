@@ -68,15 +68,7 @@ getAsync(comand).then(data => {
     let path_port = '/home/tuan/web/'+domain+'/port.txt';
 
     fs.writeFileSync(path_domain, domain, 'utf8');
-    // fs.writeFileSync(path_domain, domain, function (err) {
-    //     if (err) throw err;
-    //     console.log('Save domain done!');
-    // });
     fs.writeFileSync(path_port, port, 'utf8');
-    // fs.writeFileSync(path_port, port, function (err) {
-    //     if (err) throw err;
-    //     console.log('Save port done!');
-    // });
     cmd.run('sudo service nginx restart');
     // let test = 'sudo pm2 start /home/tuan/web/'+domain+'/'+name_sv;
     // cmd.run(test);
@@ -84,10 +76,9 @@ getAsync(comand).then(data => {
 
     //######
     let comand1 = 'cd /home/tuan/web/'+domain;
-	const getAsync = promise.promisify(cmd.get, { multiArgs: true, context: cmd })
-	getAsync(comand1).then(data => {
+	const getAsync1 = promise.promisify(cmd.get, { multiArgs: true, context: cmd })
+	getAsync1(comand1).then(data => {
 		cmd.run('pm2 start '+name_sv);
-	    
 	}).catch(err => {
 	  console.log('cmd err', err)
 	})
