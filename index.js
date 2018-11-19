@@ -77,7 +77,7 @@ getAsync(comand).then(data => {
     cmd.run('sudo service nginx restart');
     cmd.run('pm2 start /home/tuan/web/'+domain+'/'+name_sv);
     cmd.run('pm2 delete'+name_sv);
-    cmd.run('pm2 start /home/tuan/web/'+'domain'+'/'+name_sv);
+    cmd.run('pm2 start /home/tuan/web/'+domain+'/'+name_sv);
     //let test = 'pm2 start /home/tuan/web/'+domain+'/'+name_sv;
     //console.log("test:", test);
 
