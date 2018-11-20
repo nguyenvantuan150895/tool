@@ -23,7 +23,7 @@ else{
     fs.appendFileSync('/home/port.txt', data, 'utf8');
 }
 // create file config Nginx
-let ip_server = "192.168.31.253:" + port.toString();
+let ip_server = "192.168.31.252:" + port.toString();
 let content = 
 "server {\n" +
     "    listen 80;\n" +
@@ -70,15 +70,8 @@ getAsync(comand).then(data => {
     fs.writeFileSync(path_domain, domain, 'utf8');
     fs.writeFileSync(path_port, port, 'utf8');
     cmd.run('sudo service nginx restart');
-    // let test = 'sudo pm2 start /home/tuan/web/'+domain+'/'+name_sv;
-    // cmd.run(test);
-    // console.log("test:", test);
-
-    //######
-
     const cau_lenh = `cd /home/tuan/web/${domain} && pm2 start ${name_sv}`;
 	cmd.run(cau_lenh);
-    //#####
     
 }).catch(err => {
   console.log('cmd err', err)
