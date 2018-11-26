@@ -23,7 +23,7 @@ else{
     fs.appendFileSync('/home/port.txt', data, 'utf8');
 }
 // create file config Nginx
-let ip_server = "192.168.31.252:" + port.toString();
+let ip_server = "192.168.1.114:" + port.toString();
 let content = 
 "server {\n" +
     "    listen 80;\n" +
