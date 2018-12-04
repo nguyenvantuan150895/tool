@@ -23,7 +23,7 @@ else{
     fs.appendFileSync('/home/port.txt', data, 'utf8');
 }
 // create file config Nginx
-let ip_server = "192.168.1.114:" + port.toString();
+let ip_server = "192.168.43.206:" + port.toString();
 let content = 
 "server {\n" +
     "    listen 80;\n" +
@@ -58,7 +58,7 @@ fs.writeFile(path, content, function (err) {
 });
 console.log('Please wait for minutes!');
 // Create a folder code for each domain
-let comand = 'cp -R /home/tuan/web/DoAn/'+' '+'/home/tuan/web/'+domain;
+let comand = 'cp -R /home/tuan/web/copy/'+' '+'/home/tuan/web/'+domain;
 const getAsync = promise.promisify(cmd.get, { multiArgs: true, context: cmd })
 getAsync(comand).then(data => {
 	//rename file server.js => 'domain.js'
