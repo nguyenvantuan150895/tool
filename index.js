@@ -64,9 +64,10 @@ let comand = 'cp -R /home/tuan/web/copy/'+' '+'/home/tuan/web/'+domain;
 const getAsync = promise.promisify(cmd.get, { multiArgs: true, context: cmd })
 getAsync(comand).then(data => {
     //rename file server.js => 'domain.js'
-    let name_sv = domain.split(".");
-    if(name_sv.length == 3) name_sv = name_sv[1];
-    else if(name_sv.lenght == 2) name_sv = name_sv[0];
+    let arr = domain.split(".");
+    let name_sv = "";
+    if(arr.length == 3) name_sv = name_sv[1];
+    else if(arr.lenght == 2) name_sv = name_sv[0];
     name_sv = name_sv +'.js';
     cmd.run('mv /home/tuan/web/'+domain+'/server.js'+' '+'/home/tuan/web/'+domain+'/'+name_sv);
     let path_domain = '/home/tuan/web/'+domain+'/domain.txt';
