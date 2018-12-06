@@ -65,9 +65,10 @@ const getAsync = promise.promisify(cmd.get, { multiArgs: true, context: cmd })
 getAsync(comand).then(data => {
     //rename file server.js => 'domain.js'
     let arr = domain.split(".");
+    console.log("arr:", arr);
     let name_sv = "";
     if(arr.length == 3) name_sv = name_sv[1];
-    else if(arr.lenght == 2) name_sv = name_sv[0];
+    else if(arr.length == 2) name_sv = name_sv[0];
     console.log("name_sv:", name_sv);
     name_sv = name_sv +'.js';
     cmd.run('mv /home/tuan/web/'+domain+'/server.js'+' '+'/home/tuan/web/'+domain+'/'+name_sv);
