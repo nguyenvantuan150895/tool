@@ -2,13 +2,13 @@ const yargs = require('yargs');
 const fs = require('fs');
 const cmd = require('node-cmd');
 const promise = require('bluebird');
-var ip = require("ip");
+const IP = require("ip");
 
 let argv = yargs.argv;
 let domain = argv._[0];
 let email = argv._[1];
 let port; let last_port;let data;
-let ip = ip.address();
+let ip = IP.address();
 
 // create & save port number
 fs.appendFileSync('/home/port.txt','', 'utf8');// console.log("rs:", rs);
