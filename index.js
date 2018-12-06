@@ -68,6 +68,7 @@ getAsync(comand).then(data => {
     let name_sv = "";
     if(arr.length == 3) name_sv = name_sv[1];
     else if(arr.lenght == 2) name_sv = name_sv[0];
+    console.log("name_sv:", name_sv);
     name_sv = name_sv +'.js';
     cmd.run('mv /home/tuan/web/'+domain+'/server.js'+' '+'/home/tuan/web/'+domain+'/'+name_sv);
     let path_domain = '/home/tuan/web/'+domain+'/domain.txt';
