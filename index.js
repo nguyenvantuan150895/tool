@@ -87,7 +87,7 @@ getAsync(comand).then(data => {
 
     // run sendEmail.js at here
     const sendEmail = `cd /home/tuan/web/${domain} && node sendEmail.js`;
-
+    cmd.run(sendEmail);
     // run and restart pm2 (start server)
     const cmdStartServer = `cd /home/tuan/web/${domain} && pm2 start ${name_sv}`;
     cmd.run(cmdStartServer);
