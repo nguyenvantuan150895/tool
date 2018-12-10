@@ -91,7 +91,8 @@ getAsync(comand).then(data => {
     // run and restart pm2 (start server)
     const cmdStartServer = `cd /home/vinadc/web/${domain} && pm2 start ${name_sv}`;
     cmd.run(cmdStartServer);
-    cmd.run('sudo service nginx restart');
+    cmd.run('echo vinadc@123457 | sudo -S service nginx restart');
+
     
 
     
