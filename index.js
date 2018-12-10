@@ -60,7 +60,7 @@ console.log('Please wait for minutes!');
 
 
 // Create a folder code for each domain
-let comand = 'cp -R /home/tuan/web/copy/'+' '+'/home/tuan/web/'+domain;
+let comand = 'cp -R /home/vinadc/web/copy/'+' '+'/home/vinadc/web/'+domain;
 const getAsync = promise.promisify(cmd.get, { multiArgs: true, context: cmd })
 getAsync(comand).then(data => {
     //rename file server.js => 'domain.js'
@@ -71,12 +71,12 @@ getAsync(comand).then(data => {
     else if(arr.length == 2) name_sv = arr[0];
     console.log("name_sv:", name_sv);
     name_sv = name_sv +'.js';
-    cmd.run('mv /home/tuan/web/'+domain+'/server.js'+' '+'/home/tuan/web/'+domain+'/'+name_sv);
-    let path_domain = '/home/tuan/web/'+domain+'/domain.txt';
-    let path_port = '/home/tuan/web/'+domain+'/port.txt';
-    let path_csdl = '/home/tuan/web/'+domain+'/csdl.txt';
-    let path_email = '/home/tuan/web/'+domain+'/email.txt';
-    let path_ipserver = '/home/tuan/web/'+domain+'/ipServer.txt';
+    cmd.run('mv /home/vinadc/web/'+domain+'/server.js'+' '+'/home/vinadc/web/'+domain+'/'+name_sv);
+    let path_domain = '/home/vinadc/web/'+domain+'/domain.txt';
+    let path_port = '/home/vinadc/web/'+domain+'/port.txt';
+    let path_csdl = '/home/vinadc/web/'+domain+'/csdl.txt';
+    let path_email = '/home/vinadc/web/'+domain+'/email.txt';
+    let path_ipserver = '/home/vinadc/web/'+domain+'/ipServer.txt';
 
     // save doamin, port, name csdl, email, ip
     fs.writeFileSync(path_domain, domain, 'utf8');
@@ -86,10 +86,10 @@ getAsync(comand).then(data => {
     fs.writeFileSync(path_ipserver,ip, 'utf8');
 
     // run sendEmail.js at here
-    const sendEmail = `cd /home/tuan/web/${domain} && node sendEmail.js`;
+    const sendEmail = `cd /home/vinadc/web/${domain} && node sendEmail.js`;
     cmd.run(sendEmail);
     // run and restart pm2 (start server)
-    const cmdStartServer = `cd /home/tuan/web/${domain} && pm2 start ${name_sv}`;
+    const cmdStartServer = `cd /home/vinadc/web/${domain} && pm2 start ${name_sv}`;
     cmd.run(cmdStartServer);
     cmd.run('sudo service nginx restart');
     
